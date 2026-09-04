@@ -1,0 +1,4708 @@
+/* ---------- Self-hosted web fonts ----------
+   Previously loaded from Google Fonts, which cost two render-blocking
+   stylesheet requests to a third-party host on every page. These are the
+   same Latin-subset files Google serves, stored in assets/font/. The two
+   upright files are preloaded in includes/header.php. font-display: swap
+   shows text in the fallback font immediately if a file is slow. */
+@font-face {
+  font-family: "DM Sans";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(assets/font/dm-sans-italic.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(assets/font/dm-sans.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Serif Text";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/font/dm-serif-text-italic.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DM Serif Text";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/font/dm-serif-text.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body *,
+body *:active,
+body *:focus {
+  outline: none !important;
+}
+
+html {
+  margin: 0;
+  box-sizing: border-box;
+  /* scroll-behavior: auto;
+    overscroll-behavior: none; */
+}
+
+html body {
+  font-size: 18px;
+  line-height: 24px;
+  color: #0d0d0d;
+  background: #ffffff;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  margin: 0;
+  height: 100%;
+  font-family: "DM Sans", sans-serif;
+  /* overflow: hidden; */
+}
+
+body a:hover,
+body a:active,
+body a:focus {
+  opacity: 1;
+  text-decoration: none;
+  color: inherit;
+}
+
+body a {
+  color: inherit;
+  text-decoration: none;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#smooth-wrapper {
+  /* position: fixed;
+  inset: 0; */
+  height: 100%;
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  float: left;
+}
+
+ul li {
+  list-style: none;
+}
+
+.bgCover {
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body h1,
+body .h1,
+body h2,
+body .h2,
+body h3,
+body .h3,
+body h4,
+body .h4,
+body h5,
+body .h5,
+body h6,
+body .h6 {
+  margin: 0;
+  font-family: "DM Serif Text", serif;
+}
+
+body h1,
+body .h1 {
+  font-size: 92px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+body h2,
+body .h2 {
+  font-size: 56px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+body h3,
+body .h3 {
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+body h4,
+body .h4 {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+body h5,
+body .h5 {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+body h6,
+body .h6 {
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.p1,
+.p1 p {
+  font-size: 24px;
+  line-height: 1.2;
+  /* letter-spacing: -1.44px; */
+  font-weight: 400;
+}
+
+/* .p2,
+.p2 p {
+    font-size: 22px;
+    line-height:1.2;
+    font-weight: 400;
+} */
+
+.titleText {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 2.42px;
+  text-transform: uppercase;
+}
+
+.fontWeight {
+  font-weight: 700;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.gap80 {
+  gap: 72px;
+}
+
+.gap60 {
+  gap: 60px;
+}
+
+.gap40 {
+  gap: 40;
+}
+
+.padding_lg {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.padding_md {
+  padding-top: 68px;
+  padding-bottom: 68px;
+}
+
+.padding_sm {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.padding_xl {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.border-radius16 {
+  border-radius: 16px;
+}
+
+.pt60 {
+  padding-top: 60px;
+}
+
+.pb60 {
+  padding-bottom: 60px;
+}
+
+/**********global color**********/
+
+.textColor_OffBlack {
+  color: #0d0d0d;
+}
+
+.textColor_White {
+  color: #fff;
+}
+
+.textColor_offWhite {
+  color: #ffffffcc;
+}
+
+.textColor_Blue {
+  color: #0c2240;
+}
+
+.textColor_Cyan {
+  color: #4dd4d4;
+}
+
+.textColor_Green {
+  color: #1a8282;
+}
+
+.bG_LightGray {
+  background: #f4f8f8;
+}
+
+.bG_Blue {
+  background: #0c2240;
+}
+
+.bG_White {
+  background: #fff;
+}
+
+.bG_FloralWhite {
+  background: #fffdf9;
+}
+
+/*************btn*************/
+
+.btn {
+  font-size: 18px;
+  padding: 17px 30px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  /* width: fit-content; */
+  transition: all 0.5s ease;
+}
+
+.btn:focus {
+  color: #fff;
+}
+
+/*************blueBtn************/
+
+.btnBlue {
+  background: #0c2240;
+  color: #ffffff;
+}
+
+.btnBlue:hover {
+  /* border:1px solid #0C2240; */
+  background: #1a8282;
+  color: #fff;
+}
+
+.btnGreen {
+  background: #1a8282;
+  color: #ffffff;
+}
+
+.btnGreen:hover {
+  /* border:1px solid #1a8282; */
+  background: #0c2240;
+  color: #fff;
+}
+
+.btnTextBorder {
+  border: 1px solid #ffffff5e;
+  color: #ffffff;
+}
+
+.btnTextBorder:hover {
+  border: 1px solid #1a8282;
+  background: #1a8282;
+  color: #fff;
+}
+
+.box_Shadow {
+  box-shadow: 0px 4px 32px 0px #0c224012;
+}
+
+.border-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  color: #1a8282;
+  text-transform: uppercase;
+}
+
+.border-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 2px;
+  background: #1a8282;
+}
+
+.boder-Left-Right_title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 42px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2.2px;
+  color: #1a8282;
+  text-transform: uppercase;
+}
+
+.boder-Left-Right_title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 2px;
+  background: #1a8282;
+}
+
+.boder-Left-Right_title::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 2px;
+  background: #1a8282;
+}
+
+.footer_section .bottom_footer .footer_col ul li a,
+.bottom_footer .bottom_footer_left p {
+  font-size: 15px;
+}
+
+/* *---------- Container size -----------* */
+.container {
+  max-width: 1440px;
+  padding: 0 15px;
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/***********header*********/
+
+.site-header .menu_div {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: flex-end;
+}
+
+.site-header .main_menu ul {
+  display: flex;
+  gap: 28px;
+}
+
+.main_menu li a {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  color: #0c2240;
+}
+
+.site-header {
+  padding: 10px 0;
+  background: #fffffff7;
+  /* position: fixed;
+  width: 100%;
+  z-index: 999; */
+}
+
+.header_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-btn a {
+  padding: 14px 23px;
+}
+
+.header_right .language {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  padding-right: 20px;
+}
+
+.header_right .language:after {
+  position: absolute;
+  content: "";
+  width: 13px;
+  height: 7px;
+  background-image: url(./assets/images/down_arrow.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 9px;
+  right: 0px;
+}
+
+.header_right .language span {
+  font-size: 16px;
+  color: #0c2240;
+  font-weight: 600;
+}
+
+.main_menu .header-btn {
+  display: none;
+}
+
+.header_right .header-btn {
+  display: block;
+}
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 260px;
+  background: #fffffff7;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: 0.35s;
+  padding: 15px 0;
+}
+
+.dropdown li {
+  width: 100%;
+}
+
+.dropdown li a {
+  padding: 12px 20px;
+}
+
+.site-header .main_menu>ul>li>a {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.site-header .main_menu>ul>li>a,
+.dropdown li a,
+.language-dropdown li a {
+  transition: all 0.3s;
+}
+
+.site-header .main_menu>ul>li>a:hover,
+.dropdown li a:hover,
+.language-dropdown li a:hover {
+  /* color: #4dd4d4; */
+  color: #1a8282;
+}
+
+.dropdown_menu:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown_menu a.menu_item {
+  position: relative;
+  padding-right: 22px;
+}
+
+.dropdown_menu a.menu_item:after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 7px;
+  background-image: url(./assets/images/down_arrow.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+}
+
+.main_menu .dropdown_menu ul.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 40px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  gap: 12px;
+}
+
+.main_menu .dropdown_menu {
+  position: relative;
+  z-index: 999;
+}
+
+.hamburger {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: none;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #1d1d1d;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.menu-close {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 32px;
+  line-height: 1;
+  color: #1d1d1d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-close:hover {
+  color: #1a8282;
+}
+
+.responsiveToggle {
+  display: none;
+}
+
+/********** footer-section ************/
+.footer_section .footer_logo a {
+  width: 250px;
+}
+
+.footer_section .bottom_footer_left p {
+  margin-bottom: 0;
+}
+
+.footer_detils a:last-of-type {
+  padding-top: 10px !important;
+  display: block;
+}
+
+.footer_section {
+  padding: 96px 0 20px;
+}
+
+.footer_section p,
+.footer_section a {
+  margin-bottom: 12px;
+}
+
+.footer_section span {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer_section .bottom_footer_left ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer_section .bottom_footer .footer_col {
+  justify-content: end;
+  display: flex;
+}
+
+/* .footer_section .footer_menu_row {
+    gap: 85px;
+} */
+
+.bottom_footer {
+  border-top: 1px solid #ffffff14;
+  padding-top: 30px;
+  margin-top: 66px;
+}
+
+.footer_LogoDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.footer_LogoDiv .footer_logo .logo {
+  padding-bottom: 21px;
+  display: block;
+}
+
+.footer_LogoDiv .social_icon {
+  display: flex;
+  gap: 14px;
+}
+
+.footer_menu_row .col-lg-5 {
+  padding-left: 85px;
+}
+
+.footer_detils>a:first-of-type {
+  padding-bottom: 0px;
+  display: block;
+}
+
+.footer_menu h5 {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 17px;
+  font-family: "DM Sans", sans-serif;
+}
+
+/********** hero-section ************/
+.hero_content {
+  width: 100%;
+  /* height: 80vh; */
+}
+
+section.hero_section.bgCover {
+  height: calc(100vh - 192px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-position: center center;
+}
+
+.hero_section .hero_content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.hero_section .hero_content h1 {
+  padding-bottom: 4px;
+}
+
+.hero_section .hero_content p {
+  margin-bottom: 4px;
+  max-width: 100%;
+  width: 730px;
+}
+
+.hero_section .hero_content .btn_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/********** card-section ************/
+
+.callSection .bnt_div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.quick_cards .card_div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 34px;
+}
+
+.quick_cards .cards_col {
+  border-right: 1px solid #ffffff14;
+}
+
+.quick_cards .cards_col:last-child {
+  border-right: 0px;
+}
+
+.quick_cards .card_div .icon_div {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: #1a828233;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick_cards .card_div .icon_content h5 {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 800;
+  font-family: "DM Sans", sans-serif;
+}
+
+.quick_cards .card_div .icon_content p {
+  color: #ffffff80;
+}
+
+.quick_cards .card_div .icon_content {
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+}
+
+.quick_cards .cards_col:first-child .card_div {
+  padding-left: 0;
+}
+
+/********** abut-section ************/
+.inner_hero .heading {
+  padding-bottom: 0;
+}
+
+.inner_hero .btn_div .btnGreen {
+  border: 1px solid transparent;
+}
+
+.inner_hero .btn_div .btnGreen:hover {
+  border: 1px solid #fff;
+}
+
+.about_section .about_img img {
+  box-shadow: 0px 24px 80px 0px #0c224029;
+  width: 100%;
+  height: 590px;
+  object-fit: cover;
+}
+
+.about_content .counter_content h4 {
+  font-size: 36px;
+  padding-bottom: 5px;
+  font-weight: 400;
+}
+
+.about_section .heading_content {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.about_section .heading_content:first-child p {
+  margin-bottom: 0;
+}
+
+.about_section .counter {
+  display: flex;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+.about_section .about_content {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding-right: 50px;
+}
+
+.about_section .counter_content {
+  border-right: 1px solid #e8edf2;
+  padding-right: 24px;
+}
+
+.about_section .counter_content:last-child {
+  border-right: none !important;
+}
+
+.about_content .btn_div a {
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+  text-transform: capitalize;
+}
+
+.btnBlue img {
+  filter: brightness(0) invert(1);
+}
+
+.about_section .heading_content h2 {
+  padding-bottom: 10px;
+}
+
+.about_section .counter_content p {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+/* .btnBlue:hover img{
+    filter: brightness(0) invert(1);
+} */
+
+/********** service-section ************/
+
+section.services_section.padding_lg .services_content {
+  position: sticky;
+  top: 24px;
+}
+
+section.services_section.padding_lg {
+  position: relative;
+}
+
+.services_section .service_list a {
+  border: 1px solid #edf0f4;
+  background: #fff;
+  padding: 15px 24px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.services_section .list-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.services_section .service_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.services_section .services_content {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.services_section .list-content h6 {
+  font-weight: 400;
+}
+
+.services_section .list-content h6 br {
+  display: none;
+}
+
+/********** testimonial-section ************/
+
+.testimonial_section {
+  padding: 40px 0;
+}
+
+.testimonial_section .row>.col-lg-6:last-child .testimonial_content {
+  border-left: 3px solid #e8edf2;
+}
+
+.star_div p {
+  color: #5f6c80;
+  font-size: 16px;
+  letter-spacing: 0.55px;
+  font-weight: 500;
+  padding-top: 7px;
+}
+
+.testimonial_content p {
+  color: #5f6c80;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.testimonial_content h6 {
+  font-size: 22px;
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.testimonial_content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-left: 3px solid #1a8282;
+  padding-left: 35px;
+}
+
+/********** team-section ************/
+
+.team_section .team_box img {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.team_section .team_content {
+  padding: 27px 28px 28px;
+}
+
+.team_section .team_content p:first-of-type {
+  color: #1a8282;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.team_section p {
+  font-size: 17px;
+}
+
+.team_section .team_box {
+  box-shadow: 0px 4px 32px 0px #0c224012;
+}
+
+.team_section .row>.col-lg-6 {
+  display: flex;
+}
+
+.team_section p {
+  font-weight: 300;
+}
+
+/********** resources_section ************/
+
+.resources_section .row>.col-lg-6:first-child {
+  padding-right: 55px;
+}
+
+.resources_section h2 {
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* .resources_section.padding_lg {
+  padding-top: 0;
+} */
+
+.insurance_logo {
+  display: flex;
+  gap: 55px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.insurance .heading p {
+  font-weight: 300;
+}
+
+.insurance {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.resources_section .list-content h6 {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 600;
+  font-family: "DM Sans", sans-serif;
+}
+
+.insurance .heading {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0;
+}
+
+.patient_list a {
+  background: #f8fafc;
+  border: 1px solid #edf0f4;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.patient_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.patient_list .list-content {
+  display: flex;
+  gap: 14px;
+}
+
+.patient_list .list_heading p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.heading {
+  text-align: center;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/********************/
+.location_section h3 {
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.location_section .location_card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 24px 0px #0c224012;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.location_section .location_map iframe {
+  width: 100%;
+  height: 280px;
+  border: 0;
+  display: block;
+}
+
+.location_card a.btn.btnBlue {
+  text-transform: capitalize;
+}
+
+.location_card a.btn.btnBlue:focus {
+  color: #fff !important;
+}
+
+.location_section .location_content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex: 1;
+}
+
+.location_section .location_content_div {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.location_section .location_left {
+  width: 55%;
+}
+
+.location_section .location_left h5 {
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  font-weight: 400;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.location_section .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #178c8c;
+  display: inline-block;
+}
+
+.location_section .location_right {
+  width: 45%;
+}
+
+.location_section .info_item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.location_section .info_item:last-child {
+  margin-bottom: 0;
+}
+
+.location_section .icon a img {
+  width: 24px;
+  height: 24px;
+}
+
+.location_section .location_footer a img {
+  padding-right: 6px;
+}
+
+.location_section .location_footer {
+  border-top: 1px solid #e6e6e6;
+  padding-top: 25px;
+  margin-top: 22px;
+}
+
+.location_section .row>div {
+  display: flex;
+}
+
+.location_section .row>.col-lg-6:last-child .dot {
+  background: #0c2240;
+}
+
+/*********Cataracts-page-css**********/
+
+.inner_hero .inner_content .btn_div {
+  padding-top: 14px;
+}
+
+.inner_hero .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 16px;
+}
+
+.inner_hero .border-title {
+  color: #4dd4d4;
+}
+
+/*==============Symptoms=============*/
+
+.Symptoms_section .row>.col-lg-6:last-child,
+.condition_info .row>.col-lg-6:last-child {
+  padding-left: 0;
+}
+
+.Symptoms_section .row>.col-lg-6:first-child,
+.condition_info .row>.col-lg-6:first-child {
+  padding-right: 0;
+}
+
+.symptom_div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.symptom_warning .symptom-card,
+.symptom_prevention .symptom-card {
+  padding: 0px 17px;
+}
+
+.symptom-card {
+  padding: 28px 24px;
+}
+
+.Symptoms_section .row>.col-lg-6 {
+  display: flex;
+}
+
+.symptom-card span {
+  color: #1a8282;
+  font-size: 36px;
+  font-weight: 400;
+  font-family: "DM Serif Text", serif;
+}
+
+.symptom-card h6 {
+  margin: 14px 0;
+  font-weight: 400;
+}
+
+.Symptoms_section .row>.col-lg-6 .symptom-card {
+  width: 50%;
+}
+
+.symptom_overview .col-lg-12 .symptom-card {
+  width: 33%;
+}
+
+.darkCard_border {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.lightCard_border {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.symptom_warning .heading,
+.symptom_prevention .heading {
+  padding-bottom: 30px;
+}
+
+.glaucoma_condition .heading {
+  padding-bottom: 50px !important;
+}
+
+/*==============treatment_section=============*/
+
+.treatment_section .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 16px;
+  padding-bottom: 0;
+}
+
+.treatment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 38px 0;
+  border-top: 1px solid #0000001a;
+}
+
+.headingWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: 26%;
+}
+
+.headingWithIcon h6 {
+  font-weight: 400;
+}
+
+.treatment-item p {
+  width: 64%;
+}
+
+.headingWithIcon span {
+  font-family: "DM Serif Text", serif;
+  font-size: 29px;
+  line-height: 1;
+  color: #1a8282;
+}
+
+.treatment-item:last-child {
+  border-bottom: 1px solid #0000001a;
+}
+
+.callSection .heading {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  padding-bottom: 0;
+}
+
+/* Layout for .language lives with the rest of the header, in the
+   `.header_right .language` rule -- it outranks a bare `.language` selector. */
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #1d1d1d;
+  cursor: pointer;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 170px;
+  margin: 22px 0 0;
+  padding: 8px 0;
+  list-style: none;
+  background: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  /* box-shadow: 0 10px 25px rgba(0,0,0,.12); */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+/* Bridges the 22px margin gap above the panel so the pointer never leaves
+   .language on its way down and lose :hover. Unreachable while hidden. */
+.language-dropdown::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -22px;
+  height: 22px;
+}
+
+.language-dropdown li a {
+  display: block;
+  padding: 10px 20px;
+  color: #0c2240;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.language-dropdown img {
+  width: 30px;
+  padding-right: 10px;
+}
+
+/* Desktop Hover */
+.language:hover .language-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Mobile Click */
+.language.active .language-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.location_section .heading {
+  width: 100%;
+}
+
+/*********Dry-Eye-page-css**********/
+
+.inner_hero .inner_subtitle {
+  display: block;
+  font-family: "DM Serif Text", serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 400;
+  color: #1a8282;
+  margin-bottom: 22px;
+}
+
+/*==============condition_info=============*/
+.condition_block .row>.col-lg-6:first-child {
+  padding-right: 25px;
+}
+
+.condition_block .row>.col-lg-6:nth-child(2) {
+  padding-left: 25px;
+}
+
+.condition_block.glaucoma_condition .row>.col-lg-6:first-child,
+.condition_block.glaucoma_condition .row>.col-lg-6:last-child {
+  padding: 0;
+}
+
+.condition_block.glaucoma_condition .row>.col-lg-6:first-child .info_card {
+  border-top-left-radius: 16px !important;
+  border-bottom-left-radius: 16px !important;
+}
+
+.condition_block.glaucoma_condition .row>.col-lg-6:last-child .info_card {
+  border-top-right-radius: 16px !important;
+  border-bottom-right-radius: 16px !important;
+}
+
+.condition_block .block_last_col {
+  padding-top: 40px;
+}
+
+section.condition_block.legal_page ul.arrow_list {
+  margin-bottom: 20px;
+}
+
+/* .glaucoma_treatment .content {
+    text-align: right;
+} */
+.condition_info .info_card {
+  height: 100%;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.condition_info .info_card.emergency_notice {
+  margin-bottom: 30px !important;
+  clear: both;
+  height: auto;
+}
+
+.condition_info .info_card .heading {
+  text-align: left;
+  align-items: flex-start;
+  padding-bottom: 20px;
+}
+
+.condition_info .titleText {
+  letter-spacing: 0;
+}
+
+.arrow_list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.arrow_list li {
+  position: relative;
+  padding-left: 26px;
+}
+
+.arrow_list li::before {
+  content: "";
+  position: absolute;
+  background-image: url(./assets/images/arrow.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  top: 3px;
+  width: 13px;
+  height: 13px;
+  color: #1a8282;
+}
+
+/*==============condition_block=============*/
+
+.condition_block .heading {
+  text-align: left;
+  align-items: flex-start;
+  padding-bottom: 30px;
+}
+
+.glaucoma_condition .block_heading {
+  padding-bottom: 20px !important;
+}
+
+/*********Epiphora-page-css**********/
+
+.text_italic {
+  font-style: italic;
+}
+
+/* .treatment-item is a flex row sized for one <p>. Items needing more than a
+   single paragraph wrap them here so they stay one flex child, not several. */
+.treatment-item .treatment_text {
+  width: 70%;
+}
+
+.treatment-item .treatment_text p {
+  width: 100%;
+}
+
+.treatment-item .treatment_text p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.treatment-item .treatment_text p.text_italic {
+  font-weight: 200;
+}
+
+/*********CJK-font-fallback**********/
+
+/* DM Sans and DM Serif Text contain no Chinese glyphs. Without a Noto
+   fallback appended, every Chinese page renders in whatever the OS
+   substitutes -- different on Windows, macOS and Android. The Latin
+   fonts stay first so digits, phone numbers and "BOTOX(R)" still match
+   the English design. */
+
+/* SC and TC need different font families -- a Simplified face has no
+   Traditional glyphs, so /zh-hant/ set in "Noto Sans SC" falls through to
+   an OS substitute and stops matching the rest of the page. */
+
+body.lang-zh {
+  font-family:
+    "DM Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body.lang-zh-Hant {
+  font-family:
+    "DM Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+body.lang-zh h1,
+body.lang-zh .h1,
+body.lang-zh h2,
+body.lang-zh .h2,
+body.lang-zh h3,
+body.lang-zh .h3,
+body.lang-zh h4,
+body.lang-zh .h4,
+body.lang-zh h5,
+body.lang-zh .h5,
+body.lang-zh h6,
+body.lang-zh .h6 {
+  font-family: "DM Serif Text", "Noto Serif SC", "Songti SC", serif;
+}
+
+body.lang-zh-Hant h1,
+body.lang-zh-Hant .h1,
+body.lang-zh-Hant h2,
+body.lang-zh-Hant .h2,
+body.lang-zh-Hant h3,
+body.lang-zh-Hant .h3,
+body.lang-zh-Hant h4,
+body.lang-zh-Hant .h4,
+body.lang-zh-Hant h5,
+body.lang-zh-Hant .h5,
+body.lang-zh-Hant h6,
+body.lang-zh-Hant .h6 {
+  font-family: "DM Serif Text", "Noto Serif TC", "Songti TC", serif;
+}
+
+/* Chinese runs far shorter than English -- the uppercase/letter-spacing
+   treatment on eyebrow labels is designed for Latin text and looks wrong
+   applied to Hanzi. */
+body.lang-zh .border-title,
+body.lang-zh .boder-Left-Right_title,
+body.lang-zh .titleText,
+body.lang-zh-Hant .border-title,
+body.lang-zh-Hant .boder-Left-Right_title,
+body.lang-zh-Hant .titleText {
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+/*********Spanish-layout-adjustments**********/
+
+/* The nav is sized for English. Spanish labels run roughly 20-25% longer
+   ("Atencion Oftalmologica" vs "Ophthalmic Care"), so the bar needs to
+   give some back between 1200px and the widest layouts. Below 1200px the
+   mobile drawer takes over and none of this applies. */
+
+.lang-es .site-header .menu_div {
+  gap: 24px;
+}
+
+.lang-es .site-header .main_menu ul {
+  gap: 16px;
+}
+
+.lang-es .main_menu li a {
+  font-size: 15px;
+}
+
+.lang-es .header-btn a {
+  padding: 14px 18px;
+}
+
+/* "Enfermedad Ocular Diabetica" and "Destellos y Moscas Volantes" both
+   overflow the 260px English dropdown. */
+.lang-es .dropdown {
+  width: 310px;
+}
+
+/* Homepage stat row. The English labels are two or three short words;
+   "Anos Atendiendo el Sur de California" is six, and at the English
+   sizing the three columns collide. */
+.lang-es .about_section .counter {
+  gap: 16px;
+}
+
+.lang-es .about_section .counter_content {
+  padding-right: 16px;
+  flex: 1;
+}
+
+.lang-es .about_section .counter_content p {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+/*********About-page-css**********/
+
+/* Stat row in the dark hero. The homepage counter is scoped to
+   .about_section and carries dividers this one doesn't want. */
+.about_banner .inner_subtitle {
+  opacity: 0;
+}
+
+.inner_hero .counter {
+  display: flex;
+  gap: 60px;
+  padding-top: 10px;
+}
+
+.inner_hero .counter_content h4 {
+  margin-bottom: 4px;
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+/* .inner_hero .counter_content p {
+  font-size: 18px;
+} */
+
+.cta_centered p {
+  width: 515px;
+}
+
+.cta_centered .btn.btnText:last-child {
+  padding: 0;
+}
+
+.cta_centered .btn_div a img {
+  filter: brightness(0);
+}
+
+.cta_centered .btn_div a {
+  display: flex;
+  gap: 10px;
+  width: fit-content;
+}
+
+.inner_hero .counter {
+  padding-top: 10px;
+}
+
+.mission_quote .quote_mark {
+  height: 24px;
+}
+
+.doctors_section .doctor_content {
+  padding-left: 40px;
+}
+
+.doctors_section .doctor_block:last-child .doctor_content {
+  padding-right: 50px;
+  padding-left: 0;
+}
+
+.doctors_section .heading {
+  padding-bottom: 0;
+}
+
+.mission_quote .heading {
+  padding-bottom: 0;
+}
+
+/*==============mission quote=============*/
+
+.mission_quote .quote_mark {
+  display: block;
+  font-family: "DM Serif Text", serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #1a8282;
+  margin-bottom: 8px;
+}
+
+/*==============doctors=============*/
+
+.doctor_block {
+  padding: 56px 0;
+  border-bottom: 1px solid #0c22401a;
+}
+
+.doctor_block:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.doctor_img img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+.doctor_content .doctor_role {
+  display: block;
+  margin: 12px 0 24px;
+}
+
+.doctor_block .titleText {
+  letter-spacing: 0.26px;
+}
+
+.tag_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0 26px;
+}
+
+.tag_list span {
+  border: 1px solid #1a828259;
+  border-radius: 2px;
+  padding: 5px 14px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  color: #1a8282;
+  background: #1a82820d;
+}
+
+.detail_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 26px;
+  border-top: 1px solid #0c22401a;
+}
+
+.detail_list .detail_row {
+  display: flex;
+  gap: 20px;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.detail_list .detail_label {
+  flex: 0 0 96px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #1a8282;
+}
+
+/*==============affiliations=============*/
+
+.affiliation_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-top: 34px;
+}
+
+.affiliation_list .affiliation_item {
+  background: #f4f8f8;
+  border-radius: 0px;
+  border-left: 2px solid #1a82824d;
+  padding: 18px 24px;
+}
+
+.affiliation_list .affiliation_item:first-child {
+  border-left: 2px solid #1a8282;
+}
+
+.affiliation_list .affiliation_item h6 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.affiliation_list .affiliation_item p {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.epiphora_treatment .headingWithIcon {
+  width: 35%;
+}
+
+.epiphora_treatment .treatment_text {
+  width: 65%;
+}
+
+/*==============info panel=============*/
+
+/* One panel, rows split by rules -- unlike .affiliation_list, which is
+   separate boxes with gaps between them. */
+.info_panel {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 34px;
+}
+
+.info_panel .info_panel_item {
+  padding: 22px 26px;
+  border-bottom: 1px solid #0c22401a;
+}
+
+.info_panel .info_panel_item:last-child {
+  border-bottom: 0;
+}
+
+.info_panel .info_panel_item h6 {
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+
+/* .info_panel .info_panel_item p {
+  font-size: 14px;
+} */
+
+.diabetic_info .heading h3 {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+/*==============contact=============*/
+.contact_info p {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.contact_info p {
+  margin-bottom: 0 !important;
+}
+
+.contact_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 30px;
+}
+
+.contact_section .heading {
+  padding-bottom: 0 !important;
+}
+
+.contact_div {
+  padding-right: 50px;
+}
+
+.contact_info .contact_divider {
+  border-top: 1px solid #0c22401a;
+  margin: 14px 0;
+}
+
+.contact_form {
+  background: #f2f4f4;
+  border: 1px solid #7f7f7f14;
+  padding: 40px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #000 !important;
+  opacity: 1;
+}
+
+.contact_form .form_row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.contact_form .form_field {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact_form label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.contact_form input,
+.contact_form select,
+.contact_form textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #00000030;
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #000000;
+}
+
+.contact_form textarea {
+  height: 170px;
+  resize: vertical;
+}
+
+.contact_form ::placeholder {
+  color: #0d0d0d99;
+}
+
+.contact_form .btn {
+  border: 0;
+  margin-top: 4px;
+}
+
+.form_alert {
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.form_alert_success {
+  background: #1a82821a;
+  border: 1px solid #1a828266;
+  color: #146b6b;
+}
+
+.form_alert_error {
+  background: #c0392b14;
+  border: 1px solid #c0392b55;
+  color: #a33227;
+}
+
+/* Deliberately <p>, not <ul> -- the global `ul { width:100%; float:left }`
+   would float the whole alert and collapse the form rows beside it. */
+.form_alert p {
+  margin-bottom: 6px;
+}
+
+/*==============centered closing CTA=============*/
+
+.cta_centered .btn_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding-top: 34px;
+}
+
+.btnText {
+  color: #0c2240;
+}
+
+.btnText:hover {
+  color: #1a8282;
+}
+
+/* Arrow list variant with a rule under each row instead of a plain gap. */
+.arrow_list.list_divided {
+  gap: 0;
+}
+
+.arrow_list.list_divided li {
+  padding: 18px 0 18px 30px;
+  border-bottom: 1px solid #0c22401a;
+}
+
+.arrow_list.list_divided li::before {
+  top: 25px;
+}
+
+/*********Flashes-Floaters-page-css**********/
+
+/* Flush strip of equal-width cards, outer corners rounded. */
+.symptom_row {
+  display: flex;
+}
+
+/* .symptom_row .symptom-card {
+    flex: 1;
+} */
+.symptom_warning {
+  padding-top: 0 !important;
+}
+
+.symptom_row .symptom-card:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.symptom_row .symptom-card:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.symptom_row .card_featured {
+  margin: 0;
+}
+
+.symptom_overview .heading p {
+  width: 760px;
+}
+
+/************************/
+
+.condition_info h6 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.condition_block.factor_div .heading {
+  padding-bottom: 15px;
+}
+
+.custom_box .symptom-card {
+  padding: 0 16px;
+}
+
+.presents_div .symptom-card {
+  width: 33%;
+}
+
+
+/**************patient****************/
+.medical-records-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==============================
+   Header
+================================= */
+
+.medical-records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.doctor-details {
+  width: 40%;
+  text-align: right;
+  font-size: 18px;
+  line-height: 1.15;
+  font-style: italic;
+}
+
+.doctor-details p {
+  margin: 0;
+}
+
+.header-line {
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  margin-top: 12px;
+}
+
+/* ==============================
+   Main Content
+================================= */
+
+.medical-records-content {
+  text-align: center;
+  flex: 1;
+}
+
+.medical-records-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.footer_heading {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.medical-records-link:hover {
+  color: #0C2240;
+}
+
+.medical-note {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+/* ==============================
+   Footer
+================================= */
+
+.medical-records-footer {
+  font-size: 18px;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.medical-records-footer p {
+  margin: 0;
+}
+
+.medical-footer .medical-footer_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+.lang-es .main_menu>ul>li>a {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+
+/**************patient****************/
+
+@media (max-width: 1800px) {
+  section.hero_section.bgCover {
+    height: calc(100vh - 170px);
+  }
+
+  .site-header .main_menu ul {
+    gap: 20px;
+  }
+
+  .quick_cards .card_div .icon_content h5 {
+    font-size: 20px;
+  }
+
+  .quick_cards .card_div {
+    padding: 28px 25px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .lang-es .site-header .main_menu ul {
+    gap: 12px;
+  }
+
+  .lang-es .main_menu li a {
+    font-size: 14px;
+  }
+
+  .lang-es .header-btn a {
+    font-size: 15px;
+    padding: 13px 15px;
+  }
+
+  .contact_section h2 {
+    font-size: 50px;
+  }
+
+  .symptom_overview .symptom-card p,
+  .about_banner .inner_content p,
+  .doctors_section p,
+  .blepharospasm_banner p,
+  .condition_block p,
+  .blepharospasmCall p,
+  .condition_info .arrow_list li p,
+  .condition_info .arrow_list li,
+  .condition_info p,
+  .dry_info p {
+    font-size: 16px;
+  }
+
+  .treatment_section .headingWithIcon h6 {
+    font-size: 22px;
+  }
+
+  .testimonial_content h6 {
+    font-size: 20px;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 36px;
+  }
+}
+
+
+@media (max-width: 1500px) {
+  .site-header .menu_div {
+    gap: 25px;
+  }
+
+  .header-btn a {
+    padding: 14px 23px;
+    font-size: 16px;
+  }
+
+  .main_menu li a {
+    font-size: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 60px;
+  }
+
+  body h1,
+  body .h1 {
+    font-size: 64px;
+  }
+
+  body h2,
+  body .h2,
+  .resources_section h2 {
+    font-size: 46px;
+  }
+
+  body h3,
+  body .h3 {
+    font-size: 36px;
+  }
+
+  body h4,
+  body .h4 {
+    font-size: 32px;
+  }
+
+  body h5,
+  body .h5 {
+    font-size: 24px;
+  }
+
+  .p1,
+  .p1 p {
+    font-size: 22px;
+  }
+
+  .footer_section p,
+  .footer_section a,
+  .location_content p,
+  .location_content span,
+  .location_content a,
+  .about_section .counter_content p,
+  .quick_cards .card_div .icon_content p {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .quick_cards .card_div .icon_content {
+    gap: 2px;
+  }
+
+  .quick_cards .card_div .icon_content h5 {
+    font-size: 16px;
+  }
+
+  .insurance_logo {
+    gap: 30px;
+  }
+
+  .hero_section .hero_content p {
+    width: 668px;
+  }
+
+  .cataracts_banner p {
+    font-size: 16px;
+  }
+
+  .Symptoms_section p {
+    font-size: 16px;
+  }
+
+  .treatment-item p {
+    width: 69%;
+    font-size: 17px;
+  }
+
+  .headingWithIcon {
+    gap: 40px;
+  }
+
+  .mission_quote .heading {
+    width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 32px;
+  }
+
+  .symptom_overview .symptom-card p,
+  .about_banner .inner_content p,
+  .doctors_section p,
+  .blepharospasm_banner p,
+  .condition_block p,
+  .blepharospasmCall p,
+  .condition_info .arrow_list li p,
+  .condition_info .arrow_list li,
+  .condition_info p,
+  .dry_info p {
+    font-size: 16px;
+  }
+
+  .inner_hero {
+    font-size: 16px;
+  }
+
+  .flashes_overview .symptom-card h6 {
+    font-size: 22px;
+  }
+
+  .testimonial_content h6 {
+    font-size: 19px;
+  }
+
+  .treatment_section .content p {
+    font-size: 16px;
+  }
+
+  .footer_section .bottom_footer_left ul {
+    gap: 15px;
+  }
+
+  .footer_section .bottom_footer .footer_col ul li a,
+  .bottom_footer .bottom_footer_left p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .site-header .main_menu ul {
+    gap: 17px;
+  }
+
+  .site-header .menu_div {
+    gap: 25px;
+  }
+
+  .header-btn a {
+    padding: 14px 23px;
+    font-size: 16px;
+  }
+
+  .hero_content {
+    width: 100%;
+    /* height: 70vh; */
+  }
+
+  body h1,
+  body .h1 {
+    font-size: 64px;
+  }
+
+  body h2,
+  body .h2 {
+    font-size: 48px;
+  }
+
+  body h3,
+  body .h3 {
+    font-size: 40px;
+  }
+
+  body h4,
+  body .h4 {
+    font-size: 36px;
+  }
+
+  body h5,
+  body .h5 {
+    font-size: 28px;
+  }
+
+  .p1,
+  .p1 p {
+    font-size: 20px;
+  }
+
+  .hero_section .hero_content {
+    gap: 20px;
+  }
+
+  .hero_section .hero_content h1 {
+    padding-bottom: 15px;
+  }
+
+  .about_section .counter_content p {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .hero_section .hero_content p {
+    width: 608px;
+    margin-bottom: 15px;
+  }
+
+  .insurance_logo {
+    gap: 40px;
+  }
+
+  .location_content p,
+  .location_content span,
+  .location_content a {
+    font-size: 15px;
+  }
+
+  .padding_lg {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .quick_cards .card_div .icon_content h5 {
+    font-size: 18px;
+  }
+
+  .footer_section {
+    padding: 60px 0 20px;
+  }
+
+  .resources_section h2 {
+    font-size: 44px;
+  }
+
+  .bottom_footer {
+    padding-top: 30px;
+    margin-top: 30px;
+  }
+
+  .header-btn a {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .main_menu li a,
+  .header_right .language span {
+    font-size: 15px;
+  }
+
+  .cataracts_banner p {
+    font-size: 15px;
+  }
+
+  .Symptoms_section p {
+    font-size: 15px;
+  }
+
+  .treatment-item p {
+    width: 68%;
+    font-size: 16px;
+  }
+
+  .treatment_section .headingWithIcon h6 {
+    font-size: 22px;
+  }
+
+  .callSection p {
+    font-size: 17px;
+  }
+
+  .blepharospasmCall p,
+  .treatment_section .content p {
+    font-size: 16px;
+  }
+
+  .mission_quote .heading {
+    width: 1150px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 30px;
+  }
+
+  .symptom_overview .symptom-card p,
+  .about_banner .inner_content p,
+  .doctors_section p,
+  .blepharospasm_banner p,
+  .condition_block p {
+    font-size: 15px;
+  }
+
+  .inner_hero {
+    font-size: 15px;
+  }
+
+  .condition_block .block_heading {
+    padding-bottom: 30px !important;
+  }
+
+  .condition_block .heading {
+    padding-bottom: 0px;
+  }
+
+  .condition_info .info_card {
+    padding: 38px 30px;
+  }
+
+  .flashes_overview .symptom-card h6 {
+    font-size: 20px;
+  }
+
+  .pink_banner .inner_content p {
+    font-size: 15.5px;
+  }
+
+  .droopy_block p {
+    font-size: 16px;
+  }
+
+  .detail_list .detail_label,
+  .detail_list .detail_row {
+    font-size: 16px;
+  }
+
+  .doctor_img img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+  }
+
+  .info_panel .info_panel_item p {
+    font-size: 14px;
+  }
+
+  .contact_info p {
+    font-size: 18px;
+  }
+
+  .headingWithIcon {
+    gap: 36px;
+  }
+
+  .custom_box .symptom-card {
+    padding: 0px 12px;
+  }
+}
+
+@media (max-width: 1366px) {
+  /* .container {
+    max-width: 1280px;
+  } */
+
+  .header-btn a {
+    padding: 14px;
+  }
+
+  .site-header .main_menu ul {
+    gap: 15px;
+  }
+
+  .main_menu li a,
+  .header-btn a {
+    font-size: 14px;
+  }
+
+  .about_section .about_content {
+    padding-right: 10px;
+  }
+
+  .insurance_logo {
+    gap: 40px;
+  }
+
+  .footer_section .bottom_footer_left ul {
+    gap: 18px;
+  }
+
+  .footer_menu_row .col-lg-5 {
+    padding-left: 60px;
+  }
+
+  .location_section .location_right {
+    width: 50%;
+  }
+
+  .location_section .location_left {
+    width: 50%;
+  }
+
+  .treatment-item p {
+    width: 68%;
+  }
+
+  .headingWithIcon {
+    width: 27%;
+  }
+
+  .resources_section .row>.col-lg-6:first-child {
+    padding-right: 45px;
+  }
+
+  .insurance_logo {
+    gap: 32px;
+  }
+
+  .quick_cards .card_div .icon_content h5 {
+    font-size: 16px;
+  }
+
+  .quick_cards .card_div .icon_content p {
+    font-size: 16px;
+  }
+
+  .mission_quote .heading {
+    width: 1110px;
+  }
+
+  .doctor_block {
+    padding: 40px 0;
+  }
+
+  /* .symptom-card {
+    padding: 0px 5px;
+} */
+  .symptom_warning .symptom-card {
+    padding: 0px 10px;
+  }
+
+  .doctors_section .doctor_block:last-child .doctor_content {
+    padding-right: 25px;
+    padding-left: 0;
+  }
+
+  .doctors_section .doctor_content {
+    padding-left: 25px;
+  }
+
+  .footer_section .bottom_footer_left ul {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 1280px) {
+
+  /* .container {
+    max-width: 1280px;
+    padding: 0 30px;
+  } */
+  .site-header .main_menu ul {
+    gap: 12px;
+  }
+
+  .main_menu li a {
+    font-size: 14px;
+  }
+
+  body h1,
+  body .h1 {
+    font-size: 52px;
+  }
+
+  body h2,
+  body .h2 {
+    font-size: 44px;
+  }
+
+  body h3,
+  body .h3 {
+    font-size: 32px;
+  }
+
+  body h4,
+  body .h4 {
+    font-size: 30px;
+  }
+
+  body h5,
+  body .h5 {
+    font-size: 28px;
+  }
+
+  .padding_xl {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .resources_section h2 {
+    font-size: 40px;
+  }
+
+  .quick_cards .card_div {
+    padding: 28px 6px;
+  }
+
+  .star_div p {
+    font-size: 14px;
+  }
+
+  .insurance_logo {
+    gap: 46px;
+  }
+
+  .bottom_footer_left li a,
+  .bottom_footer_left p {
+    font-size: 14px;
+  }
+
+  .location_section .location_right {
+    width: 55%;
+  }
+
+  .location_section .location_left {
+    width: 45%;
+  }
+
+  .treatment-item p {
+    width: 65%;
+  }
+
+  .headingWithIcon {
+    width: 32%;
+  }
+
+  .epiphora_treatment .headingWithIcon {
+    width: 40%;
+  }
+
+  .epiphora_treatment .treatment_text {
+    width: 60%;
+  }
+
+  .doctor_block {
+    padding: 40px 0;
+  }
+
+  .location_section .location_content {
+    gap: 22px;
+  }
+
+  .footer_menu_row .col-lg-5 {
+    padding-left: 56px;
+  }
+
+  .footer_section .col-xl-4.col-lg-4 {
+    flex: 38%;
+    max-width: 38%;
+  }
+
+  .doctors_section p {
+    font-size: 16px;
+  }
+}
+
+/* Show on Mobile */
+@media (max-width: 1199px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  section.hero_section.bgCover {
+    height: calc(100vh - 165px);
+  }
+
+  .menu-close,
+  .hamburger {
+    display: flex;
+  }
+
+  nav#mainNav {
+    position: fixed;
+    width: 360px;
+    background: #fff;
+    padding: 20px;
+    top: 0;
+    right: -100%;
+    height: 100%;
+    z-index: 99;
+    transition: all 0.5s;
+    /* Dropdowns are always expanded on mobile, so the menu can run past the
+       viewport -- without this the lower items are unreachable. */
+    overflow: auto;
+  }
+
+  #mainNav.main_menu.active {
+    right: 0;
+    transition: all 0.5s;
+  }
+
+  nav#mainNav ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav#mainNav ul li.dropdown_menu ul.dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none;
+  }
+
+  nav#mainNav>ul {
+    padding-top: 53px;
+  }
+
+  .responsiveToggle button.menu-close {
+    position: fixed;
+    z-index: 999;
+    top: 15px;
+    right: -100%;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 40px;
+  }
+
+  .responsiveToggle button.menu-close.active {
+    right: 20px;
+  }
+
+  .responsiveToggle {
+    display: block;
+  }
+
+  .lang-es .main_menu li a {
+    font-size: 16px;
+  }
+
+  .lang-es .dropdown {
+    width: 100%;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 24px;
+  }
+
+  .main_menu .header-btn {
+    display: block;
+  }
+
+  .header-btn a {
+    margin-top: 20px;
+  }
+
+  .header_right .header-btn {
+    display: none;
+  }
+
+  .footer_menu_row .col-lg-5 {
+    padding-left: 35px;
+  }
+
+  .hero_content {
+    height: 75vh;
+  }
+
+  body h2,
+  body .h2 {
+    font-size: 34px;
+  }
+
+  .resources_section h2 {
+    font-size: 34px;
+  }
+
+  .pb60 {
+    padding-bottom: 30px;
+  }
+
+  .quick_cards .cards_col {
+    border-right: 0px solid #ffffff14;
+    flex: 48%;
+    max-width: 48% !important;
+  }
+
+  .quick_cards .card_div {
+    padding: 28px 0px;
+  }
+
+  .about_section .about_content {
+    padding-right: 0px;
+  }
+
+  .footer_menu_row .col-lg-5 {
+    padding-left: 25px;
+  }
+
+  .footer_section .col-xl-4.col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .padding_lg {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .heading {
+    padding-bottom: 40px;
+  }
+
+  .btn {
+    padding: 17px 20px;
+    font-size: 16px;
+  }
+
+  .insurance_logo {
+    gap: 40px;
+  }
+
+  .location_content {
+    gap: 18px;
+  }
+
+  .location_content p,
+  .location_content span,
+  .location_content a {
+    font-size: 17px;
+  }
+
+  .bottom_footer .col-lg-6 {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .footer_section .bottom_footer .footer_col {
+    justify-content: flex-start;
+  }
+
+  .bottom_footer {
+    margin-top: 40px;
+  }
+
+  .location_section .location_right,
+  .location_section .location_left {
+    width: 100%;
+  }
+
+  .location_section .location_content {
+    flex-direction: column;
+    justify-content: start;
+    gap: 18px;
+  }
+
+  .padding_xl {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .treatment-item p {
+    width: 60%;
+  }
+
+  .headingWithIcon {
+    width: 40%;
+  }
+
+  /* .symptom_div{
+      flex-direction: column-reverse;
+  } */
+  .condition_info .info_card {
+    padding: 32px;
+  }
+
+  .condition_info .col-lg-6.p-0 {
+    padding: 0 15px !important;
+  }
+
+  .custom_box .symptom-card {
+    padding: 0 24px 20px;
+  }
+
+  .custom_box .col-lg-3.col-md-6 {
+    flex: 50%;
+    max-width: 50%;
+  }
+
+  .resources_section .row>.col-lg-6:first-child {
+    padding-right: 40px;
+  }
+
+  .condition_block .row>.col-lg-6:first-child {
+    padding-right: 15px;
+  }
+
+  /* .condition_block .row > .col-lg-6:last-child {
+    padding-left: 15px;
+} */
+  .condition_block .row>.col-lg-6:nth-child(2) {
+    padding-left: 15px;
+  }
+
+  .mission_quote .heading {
+    width: 100%;
+  }
+
+  .services_section .service_list h6 {
+    font-size: 20px;
+  }
+
+  .footer_section {
+    padding: 48px 0 20px;
+  }
+
+  .quick_cards .card_div .icon_content h5 {
+    font-size: 18px;
+  }
+
+  .inner_hero .counter {
+    padding-top: 0px;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 26px;
+  }
+
+  .doctor_block {
+    padding: 40px 0;
+  }
+
+  .doctors_section .doctor_content {
+    padding-left: 6px;
+  }
+
+  .doctors_section .doctor_block:last-child .doctor_content {
+    padding-right: 6px;
+    padding-left: 0;
+  }
+
+  .doctor_content .doctor_role {
+    margin: 12px 0 16px;
+  }
+
+  .tag_list span {
+    padding: 5px 5px;
+    font-size: 13px;
+  }
+
+  .tag_list {
+    gap: 7px;
+    padding: 10px 0 20px;
+  }
+
+  .detail_list {
+    padding-top: 20px;
+  }
+
+  .doctor_img img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+  }
+
+  .cta_centered h2 br {
+    display: none;
+  }
+
+  .treatment-item {
+    padding: 25px 0;
+  }
+
+  .condition_block .block_heading {
+    padding-bottom: 20px !important;
+  }
+
+  .headingWithIcon {
+    gap: 22px;
+  }
+
+  .glaucoma_condition .heading {
+    padding-bottom: 30px !important;
+  }
+
+  .affiliation_list {
+    padding-top: 20px;
+  }
+
+  .condition_block .block_last_col {
+    padding-top: 30px;
+  }
+
+  nav#mainNav ul li.dropdown_menu ul.dropdown {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 0.4s ease,
+      opacity 0.3s ease;
+  }
+
+  nav#mainNav ul li.dropdown_menu ul.dropdown.activeMenu {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 15px 0 0 0;
+  }
+
+  .arrow_list.list_divided li::before {
+    top: 20px;
+  }
+
+  .arrow_list.list_divided li {
+    padding: 12px 0 12px 30px;
+    font-size: 16px;
+  }
+
+  .info_panel .info_panel_item p {
+    font-size: 16px;
+  }
+
+  .symptom_warning .symptom-card {
+    padding: 0px;
+  }
+
+  .main_menu.active li,
+  .main_menu.active .header-btn {
+    animation: menuSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    max-height: var(--menu-height);
+    transform: scaleY(1);
+  }
+
+  .contact_info p {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  @keyframes menuSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /**************patient****************/
+  .doctor-details {
+    width: 50%;
+  }
+
+  .medical-footer .medical-footer_inner {
+    gap: 25px;
+  }
+
+  /**************patient****************/
+}
+
+@media screen and (max-width: 1024px) {
+  .footer_section .bottom_footer_left ul {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 991px) {
+
+  body h1,
+  body .h1 {
+    font-size: 42px;
+  }
+
+  body h2,
+  body .h2 {
+    font-size: 36px;
+  }
+
+  body h3,
+  body .h3 {
+    font-size: 32px;
+  }
+
+  body h4,
+  body .h4 {
+    font-size: 30px;
+  }
+
+  body h5,
+  body .h5 {
+    font-size: 28px;
+  }
+
+  .site-header .main_menu ul {
+    gap: 18px;
+  }
+
+  .padding_xl {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .condition_block .block_heading {
+    padding-bottom: 20px !important;
+  }
+
+  .Symptoms_section .row>.col-lg-6:last-child,
+  .condition_info .row>.col-lg-6:last-child {
+    padding-left: 15px;
+  }
+
+  .Symptoms_section .row>.col-lg-6:first-child,
+  .condition_info .row>.col-lg-6:first-child {
+    padding-right: 15px;
+  }
+
+  .inner_hero .heading {
+    padding-bottom: 25px;
+  }
+
+  .pt60 {
+    padding-top: 30px;
+  }
+
+  .location_section h3 {
+    font-size: 36px;
+  }
+
+  .heading_content h2 br {
+    display: none;
+  }
+
+  .footer_logo img {
+    width: 230px;
+  }
+
+  .footer_menu_row .col-lg-5 {
+    padding-left: 15px;
+  }
+
+  .footer_menu {
+    padding-top: 30px;
+  }
+
+  .bottom_footer {
+    margin-top: 30px;
+  }
+
+  .footer_section .bottom_footer .footer_col {
+    padding-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .hero_content h1 br {
+    display: none;
+  }
+
+  .about_section .about_content {
+    padding-top: 30px;
+  }
+
+  .testimonial_content {
+    margin-top: 25px;
+    padding-left: 20px;
+  }
+
+  .services_section .services_content {
+    padding-bottom: 30px;
+  }
+
+  .heading {
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .heading h1 br {
+    display: none;
+  }
+
+  .heading {
+    padding-bottom: 25px;
+  }
+
+  /* .team_section .team_box:last-child {
+    margin-bottom: 40px;
+} */
+  .team_section .team_box img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .location_section .col-lg-6:first-child .location_card,
+  .team_section .col-lg-6:first-child .team_box {
+    margin-bottom: 30px;
+  }
+
+  .resources_section .col-lg-6:first-child .insurance {
+    padding-bottom: 40px;
+  }
+
+  .p1,
+  .p1 p {
+    font-size: 18px;
+  }
+
+  .condition_info .lightCard_border {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .condition_info .darkCard_border {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .condition_info .info_card {
+    padding: 30px 20px;
+  }
+
+  .symptom_row {
+    flex-wrap: wrap;
+  }
+
+  .symptom_row .card_featured {
+    margin: 0;
+  }
+
+  .symptom_row .symptom-card:first-child,
+  .symptom_row .symptom-card:last-child {
+    border-radius: 0;
+  }
+
+  .symptom_div {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  .testimonial_section {
+    padding: 48px 0;
+  }
+
+  .mission_quote .heading {
+    text-align: left;
+  }
+
+  .doctors_section .doctor_content {
+    padding-left: 40px;
+    padding-top: 30px;
+  }
+
+  .cta_centered h2 br {
+    display: none;
+  }
+
+  .cta_centered p {
+    width: 100%;
+  }
+
+  .cta_centered .btn_div {
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .doctor_block:last-child .row {
+    flex-direction: column-reverse;
+  }
+
+  .doctor_block {
+    padding: 30px 0;
+  }
+
+  .doctors_section .doctor_block:last-child .doctor_content {
+    padding-right: 0px;
+    padding-left: 0;
+  }
+
+  .doctors_section .doctor_content {
+    padding-left: 0px;
+  }
+
+  .doctor_img img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .condition_block .col-lg-6:last-child {
+    padding-top: 40px;
+  }
+
+  .affiliation_list {
+    padding-top: 25px;
+  }
+
+  .inner_hero.about_banner .heading {
+    padding-bottom: 20px !important;
+  }
+
+  .Symptoms_section .lightCard_border,
+  .Symptoms_section .darkCard_border {
+    border-radius: 0;
+  }
+
+  .Symptoms_section .row>.col-lg-6.p-0 {
+    padding: 0 15px !important;
+  }
+
+  .treatment_section .heading {
+    padding-bottom: 0px;
+  }
+
+  .treatment-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .headingWithIcon,
+  .treatment-item p {
+    width: 100%;
+  }
+
+  .callSection .bnt_div {
+    justify-content: flex-start;
+    padding-top: 20px;
+  }
+
+  .headingWithIcon {
+    gap: 20px;
+  }
+
+  .condition_info .info_card .heading {
+    padding-bottom: 25px;
+  }
+
+  .treatment-item .treatment_text {
+    width: 100%;
+  }
+
+  .symptom_overview .symptom-card.text-center {
+    text-align: left !important;
+  }
+
+  .custom_box .symptom-card {
+    padding: 0 0px 5px;
+  }
+
+  .custom_box .col-lg-3.col-md-6 {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .contact_div {
+    padding-right: 0px;
+  }
+
+  .about_section .row {
+    flex-direction: column-reverse;
+  }
+
+  .presents_div .symptom-card {
+    width: 100%;
+  }
+
+  .quick_cards {
+    padding: 20px 0;
+  }
+
+  .quick_cards .card_div {
+    padding: 20px 0px;
+  }
+
+  .Symptoms_section .row>.col-lg-6 .symptom-card {
+    width: 100%;
+  }
+
+  .symptom_overview .col-lg-12 .symptom-card {
+    width: 50%;
+  }
+
+  .symptom_overview .col-lg-12 .symptom-card:last-child {
+    border-top: 1px solid #0c224014;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 28px;
+  }
+
+  section.hero_section.bgCover {
+    height: calc(100vh - 580px);
+  }
+
+  .about_section .heading_content {
+    gap: 14px;
+  }
+
+  .resources_section .row>.col-lg-6:first-child {
+    padding-right: 20px;
+  }
+
+  .resources_section .list-content h6 {
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
+
+  .services_section p {
+    margin-bottom: 10px;
+  }
+
+  .location_content p,
+  .location_content span,
+  .location_content a {
+    font-size: 17px;
+  }
+
+  .location_section .location_content {
+    gap: 10px;
+  }
+
+  .patient_list a,
+  .services_section .service_list a {
+    padding: 15px;
+  }
+
+  .location_section .location_content_div {
+    padding: 30px 20px;
+  }
+
+  .location_section .location_left h5 {
+    font-size: 24px;
+  }
+
+  .footer_LogoDiv .footer_logo .logo {
+    padding-bottom: 10px;
+  }
+
+  .footer_section p,
+  .footer_section a {
+    font-size: 17px;
+    line-height: 22px;
+  }
+
+  .footer_LogoDiv {
+    gap: 10px;
+  }
+
+  .about_section .heading_content h2 {
+    padding-bottom: 0px;
+  }
+
+  .footer_section .col-xl-4.col-lg-4 {
+    flex: 90%;
+    max-width: 90%;
+  }
+
+  .hamburger {
+    width: 35px;
+    height: 35px;
+  }
+
+  .epiphora_treatment .headingWithIcon {
+    width: 100%;
+  }
+
+  .symptom_overview .heading p {
+    width: 100%;
+  }
+
+  .glaucoma_treatment .content {
+    text-align: left;
+    padding-top: 15px;
+  }
+
+  .glaucoma_condition .heading {
+    padding-bottom: 30px;
+  }
+
+  .about_banner .inner_subtitle {
+    opacity: 0;
+    display: none;
+  }
+
+  .footer_detils p br {
+    display: none;
+  }
+
+  .affiliation_list {
+    padding-top: 20px;
+  }
+
+  .condition_block .row>.col-lg-6:nth-child(2) {
+    padding-top: 30px;
+  }
+
+  .factor_div .col-lg-6 {
+    padding-top: 12px !important;
+  }
+
+  .condition_block .col-lg-6:last-child {
+    padding-top: 30px;
+  }
+
+  .affiliation_list {
+    gap: 4px;
+  }
+
+  .symptom-card h6 {
+    margin: 18px 0px 8px;
+  }
+
+  .symptom_warning .row>.col-lg-4:first-child .symptom-card h6,
+  .symptom_prevention .custom_box>.col-lg-3:first-child .symptom-card h6 {
+    margin-top: 0;
+  }
+
+  .symptom_overview .symptom-card p {
+    font-size: 17px;
+  }
+
+  .contact_section .row {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .contact_section .col-lg-6 {
+    padding-top: 0 !important;
+  }
+
+  .contact_info {
+    padding-top: 20px;
+  }
+
+  .contact_info .contact_divider {
+    margin: 4px 0;
+  }
+
+  .blepharospasmCall p {
+    font-size: 17px;
+  }
+
+  .treatment_section .content {
+    padding-top: 12px;
+  }
+
+  /**************patient****************/
+  .medical-records-link {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  .doctor-details {
+    width: 62%;
+  }
+
+  .doctor-details {
+    font-size: 16px;
+  }
+
+  .medical-records-footer {
+    font-size: 15px;
+  }
+
+  .medical-records-content {
+    text-align: left;
+  }
+
+  .medical-footer .medical-footer_inner {
+    align-items: self-start;
+    text-align: left;
+  }
+
+  .medical-records-content h2 br {
+    display: none;
+  }
+
+  .medical-note {
+    margin-top: 20px;
+  }
+
+  .footer_heading {
+    gap: 30px;
+  }
+
+  .medical-footer .medical-footer_inner {
+    gap: 20px;
+  }
+
+  /**************patient****************/
+}
+
+@media (max-width: 767px) {
+  nav#mainNav {
+    width: 100%;
+  }
+
+  .main_menu li a {
+    font-size: 16px;
+  }
+
+  body h1,
+  body .h1 {
+    font-size: 35px;
+  }
+
+  body h2,
+  body .h2 {
+    font-size: 28px;
+  }
+
+  body h3,
+  body .h3 {
+    font-size: 27px;
+  }
+
+  body h4,
+  body .h4 {
+    font-size: 26px;
+  }
+
+  body h5,
+  body .h5 {
+    font-size: 26px;
+  }
+
+  .p1,
+  .p1 p {
+    font-size: 18px;
+  }
+
+  .padding_lg {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .padding_xl {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .btn {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .mission_quote h4 {
+    line-height: 1.1;
+  }
+
+  .symptom_overview .col-lg-12 .symptom-card {
+    width: 100%;
+  }
+
+  .footer_section .bottom_footer_left ul {
+    align-items: self-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  section.hero_section.bgCover {
+    height: calc(100vh - 100px);
+  }
+
+  .hero_section .hero_content p {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .hero_section .hero_content {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .titleText {
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  .hero_section .hero_content h1 {
+    padding-bottom: 5px;
+  }
+
+  .hero_section .hero_content h1 {
+    text-align: left;
+  }
+
+  .hero_section .hero_content .btn_div {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .inner_hero .heading {
+    padding-bottom: 20px;
+  }
+
+  .hero_section .hero_content .btn_div a:first-child {
+    padding: 14px 44px;
+  }
+
+  .header_right {
+    gap: 10px;
+  }
+
+  .quick_cards .cards_col {
+    flex: 100%;
+    max-width: 100% !important;
+  }
+
+  .quick_cards .card_div {
+    padding: 14px 0px;
+  }
+
+  .quick_cards {
+    padding: 20px 0;
+  }
+
+  .contact_form {
+    padding: 26px 20px;
+  }
+
+  .contact_form .form_row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about_section .counter {
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 10px 0;
+  }
+
+  .about_section .about_img img {
+    height: 350px;
+  }
+
+  .about_section .row {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+
+  .about_section .about_content {
+    padding-bottom: 0px;
+  }
+
+  .testimonial_content h6 {
+    font-size: 18px;
+  }
+
+  .testimonial_section {
+    padding: 32px 0;
+  }
+
+  .services_section .service_list a {
+    padding: 15px;
+  }
+
+  .services_section .list-content {
+    gap: 13px;
+    /* align-items: flex-start;
+    flex-direction: column; */
+  }
+
+  .services_section h6 {
+    font-size: 16px;
+  }
+
+  .services_section .icon_img img,
+  .resources_section .icon_img img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .heading {
+    padding-bottom: 25px;
+  }
+
+  .team_section .team_content {
+    padding: 28px 20px;
+  }
+
+  .insurance .heading {
+    gap: 10px;
+  }
+
+  .bottom_footer {
+    margin-top: 15px;
+    padding-top: 15px;
+  }
+
+  .bottom_footer_left li a,
+  .bottom_footer_left p {
+    font-size: 16px;
+  }
+
+  .doctor_block {
+    padding: 25px 0;
+  }
+
+  .cta_centered .btn_div {
+    align-items: self-start;
+    flex-direction: column;
+  }
+
+  .doctors_section .doctor_content {
+    padding-top: 20px;
+  }
+
+  .treatment-item {
+    padding: 20px 0;
+  }
+
+  .pb60 {
+    padding-bottom: 20px;
+  }
+
+  .border-title {
+    font-size: 13px;
+  }
+
+  .contact_section .heading {
+    padding-bottom: 0 !important;
+  }
+
+  .condition_block .heading {
+    padding-bottom: 0px;
+  }
+
+  .team_section .team_box img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .about_section .about_content {
+    padding-top: 0px;
+  }
+
+  .services_section .service_list h6 {
+    font-size: 18px;
+  }
+
+  .resources_section h2 {
+    font-size: 30px;
+  }
+
+  .patient_list .list_heading p {
+    font-size: 16px;
+    line-height: 1.1;
+  }
+
+  .about_section .counter_content {
+    border-right: 0px;
+    width: 42%;
+  }
+
+  .insurance {
+    gap: 25px;
+  }
+
+  .patient_list a {
+    padding: 10px;
+  }
+
+  .patient_list .list-content {
+    flex-direction: column;
+    padding-right: 20px;
+  }
+
+  .footer_menu {
+    padding-top: 20px;
+  }
+
+  .footer_LogoDiv {
+    gap: 10px;
+  }
+
+  .footer_section {
+    padding: 32px 0 20px;
+  }
+
+  .footer_section .col-xl-4.col-lg-4 {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .services_section .services_content {
+    gap: 14px;
+  }
+
+  .location_section h3 {
+    font-size: 30px;
+  }
+
+  .about_banner .inner_subtitle {
+    opacity: 0;
+    display: none;
+  }
+
+  .inner_hero .counter {
+    gap: 30px;
+  }
+
+  .doctor_img img {
+    width: 100%;
+    height: 350px;
+  }
+
+  .affiliation_list .affiliation_item h6 {
+    font-size: 17px;
+  }
+
+  .affiliation_list .affiliation_item {
+    padding: 18px 10px;
+  }
+
+  .mission_quote .heading h4 {
+    font-size: 24px;
+  }
+
+  .detail_list .detail_row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .detail_list .detail_label {
+    flex: 0 0 20px;
+    font-size: 15px;
+  }
+
+  .tag_list {
+    padding: 0px 0 15px;
+  }
+
+  .detail_list {
+    padding-top: 15px;
+  }
+
+  .symptom_overview .col-lg-12 .symptom-card:last-child {
+    border-top: 1px solid #0c224014;
+  }
+
+  .symptom_row .symptom-card:first-child {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .symptom_row .symptom-card:last-child {
+    border-radius: 0 0 12px 12px;
+  }
+
+  .arrow_list.list_divided li {
+    padding: 9px 0 9px 25px;
+    font-size: 15px;
+  }
+
+  .arrow_list li::before {
+    width: 11px;
+    height: 11px;
+  }
+
+  .arrow_list.list_divided li::before {
+    top: 14px;
+  }
+
+  .symptom_warning .heading {
+    padding-bottom: 20px;
+  }
+
+  .inner_hero .inner_content .btn_div {
+    padding-top: 10px;
+  }
+
+  .dry_info .heading {
+    padding-bottom: 15px !important;
+  }
+
+  .services_section .list-content h6 br {
+    display: block;
+  }
+
+  .symptom_warning .heading,
+  .symptom_prevention .heading {
+    padding-bottom: 25px;
+  }
+
+  /**************patient****************/
+  .medical-records-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .medical-logo {
+    text-align: left;
+  }
+
+  .medical-logo img {
+    width: 210px;
+    margin: 0 auto;
+  }
+
+  .doctor-details {
+    width: 100%;
+    margin-top: 15px;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .medical-records-content {
+    padding-top: 0px;
+  }
+
+  .medical-records-link {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .medical-records-content h2 {
+    margin-top: 0px;
+  }
+
+  .medical-records-footer {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .footer_heading {
+    gap: 25px;
+  }
+
+  .medical-note {
+    font-size: 18px;
+  }
+
+  .medical-footer .medical-footer_inner {
+    gap: 15px;
+  }
+
+  /**************patient****************/
+
+}
+
+/*********ACCESSIBILITY — WCAG 2.1 AA**********/
+
+/* Visible keyboard focus.
+
+   Near the top of this file, "body *, body *:active, body *:focus { outline:
+   none !important }" strips the focus ring from every element on the site, and
+   "body a" does it again for links. That leaves keyboard-only visitors -- which
+   includes most screen reader users -- with no way to see where they are among
+   the ~84 tabbable elements on a page. WCAG 2.4.7 (AA).
+
+   These rules restore it. They must carry !important and sit at the end of the
+   file to beat the two blanket rules above.
+
+   :focus-visible rather than :focus, so the ring appears for keyboard
+   navigation but not when a mouse user clicks a button.
+
+   The amber ring reads clearly against the dark navy sections; the navy halo
+   sitting outside it supplies a dark edge so the same ring stays visible
+   against white and pale grey backgrounds too. */
+body a:focus-visible,
+body button:focus-visible,
+body input:focus-visible,
+body select:focus-visible,
+body textarea:focus-visible,
+body summary:focus-visible,
+body [tabindex]:focus-visible,
+body *:focus-visible {
+  outline: 3px solid #ffb703 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px rgba(12, 34, 64, 0.85) !important;
+  border-radius: 2px;
+}
+
+/* Browsers without :focus-visible support fall back to :focus. Slightly noisier
+   for mouse users, but never leaves a keyboard user stranded. */
+@supports not selector(:focus-visible) {
+
+  body a:focus,
+  body button:focus,
+  body input:focus,
+  body select:focus,
+  body textarea:focus {
+    outline: 3px solid #ffb703 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Skip link -- WCAG 2.4.1. Without it every page forces a keyboard user through
+   roughly twenty nav and dropdown links before reaching the content. Kept off
+   screen until focused rather than display:none, because display:none would
+   remove it from the tab order and defeat the purpose. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 9999;
+  padding: 12px 22px;
+  background: #0c2240;
+  color: #ffffff !important;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+}
+
+/* Available to screen readers, not shown on screen. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Honour the OS "reduce motion" setting -- WCAG 2.3.3. */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Closed mobile drawer must leave the tab order — WCAG 2.4.3 / 2.4.7.
+
+   Below 1199px the nav slides off-screen with "right: -100%", but it keeps
+   visibility:visible, so its nine links stay focusable. A keyboard user tabs
+   off the logo and focus vanishes into links parked past the right edge --
+   measured at 375px and 768px before this rule was added.
+
+   visibility:hidden takes them out of the tab order. The delayed transition
+   lets the slide-out animation finish before the drawer is hidden, and shows
+   it instantly on open, so the animation looks exactly as it did before. */
+@media (max-width: 1199px) {
+  nav#mainNav {
+    visibility: hidden;
+    transition: right 0.5s ease, visibility 0s linear 0.5s;
+  }
+
+  nav#mainNav.active {
+    visibility: visible;
+    transition: right 0.5s ease, visibility 0s linear 0s;
+  }
+}
+
+/* Section eyebrow labels need a slightly deeper green — WCAG 1.4.3.
+
+   The brand green #1A8282 clears 4.5:1 on white (4.61) and on the green
+   buttons, but these two label classes render at 16px / weight 600, which
+   counts as small text, and they also appear on the #F4F8F8 and #FDFAF4
+   section backgrounds where the same green only reaches 4.31.
+
+   Darkening the whole brand green far enough to cover those backgrounds
+   would push it to #197E7E — a Delta E of 5.5 from the original, a visibly
+   different colour. Confining that shade to these small labels keeps the
+   brand green intact everywhere it is actually noticed, and the difference
+   on a 16px eyebrow label is imperceptible. */
+.border-title,
+.boder-Left-Right_title {
+  color: #197e7e;
+}
+
+/* Two more controls that sit off-screen while still focusable — WCAG 2.4.3.
+
+   Hiding nav#mainNav was not enough on its own:
+
+   1. "nav#mainNav ul li.dropdown_menu ul.dropdown" (in the max-width:1199px
+      block above) sets visibility:visible explicitly, which re-shows the 16
+      condition links even though their ancestor nav is hidden — an explicit
+      value on a descendant beats inherited visibility. Scoping it to :not(.active)
+      restores the inheritance while the drawer is closed.
+
+   2. The close button is parked at "right: -100%" when the menu is shut, the
+      same trick the drawer uses, so it too stays in the tab order off-screen.
+
+   Measured on a 375px viewport: 18 focusable elements were sitting outside the
+   viewport before these two rules. */
+@media (max-width: 1199px) {
+  nav#mainNav:not(.active) ul li.dropdown_menu ul.dropdown {
+    visibility: hidden !important;
+  }
+
+  .responsiveToggle button.menu-close:not(.active) {
+    visibility: hidden !important;
+  }
+}
+
+/* Submenu must open for keyboard users too — WCAG 2.1.1 (Level A).
+
+   ".dropdown_menu:hover .dropdown" was the only rule revealing the submenu, so
+   it opened on mouse hover and nothing else. The closed submenu is
+   visibility:hidden, which also makes its links unfocusable — so a keyboard
+   user could neither open it nor tab into it, leaving all 16 condition pages
+   unreachable from the navigation.
+
+   :focus-within fixes it because the toggle link is itself inside
+   .dropdown_menu: focusing the toggle opens the submenu, and Tab then moves
+   into the links that have just become visible. Mouse behaviour is unchanged. */
+.dropdown_menu:hover .dropdown,
+.dropdown_menu:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Belt-and-braces for the submenu above.
+
+   :focus-within alone relies on the browser evaluating that pseudo-class, which
+   older engines handle inconsistently. footer.php also toggles .submenu-open on
+   focusin/focusout, so the submenu opens for keyboard users either way. */
+.dropdown_menu.submenu-open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Contrast: teal on tinted light panels — WCAG 1.4.3 (Level AA).
+
+   #1A8282 clears 4.5:1 on white but not on the tinted panels: it measures
+   4.31 on #F4F8F8 (.detail_label, .doctor_role) and 4.05 on #E9F2F2 (the
+   .tag_list chips). #187878 is the same hue and saturation, two steps darker,
+   and clears all three grounds — 4.91 on #F4F8F8, 4.62 on #E9F2F2, 5.25 on
+   white. 18 failures on about-us.php per language.
+
+   .detail_label must be selected as ".detail_list .detail_label" — the bare
+   class loses to the 0,2,0 rule that sets #1A8282 further up this file. */
+.detail_list .detail_label,
+.tag_list span,
+.titleText.textColor_Green {
+  color: #187878;
+}
+
+/* Contrast: teal on the dark navy panels — WCAG 1.4.3 (Level AA).
+
+   The opposite problem. On #0C2240 the teal runs the wrong way: #1A8282
+   measures 3.46 and the darkened #197E7E is worse still at 3.28, because
+   darkening text helps only on light grounds. Light text is the fix here.
+
+   #4DD4D4 is the cyan the hero already uses on this same navy, so this
+   introduces no new colour — it measures 8.86. Scoped to .bG_Blue so the
+   light-panel rule above is untouched; it is placed after that rule because
+   both are 0,2,0 and .titleText.textColor_Green appears on both grounds. */
+.bG_Blue .inner_subtitle,
+.bG_Blue .border-title,
+.bG_Blue .boder-Left-Right_title,
+.bG_Blue .textColor_Green {
+  color: #4dd4d4;
+}
+
+/* Legal pages: cancel the global float on lists.
+
+   The rule at the top of this file sets `ul { width:100%; float:left }`. On the
+   legal pages a heading often follows a list, and .heading is a flex container --
+   a flex container establishes its own formatting context and will not overlap a
+   float, so it was being placed in the few pixels left beside the 100%-wide
+   floated list instead of below it. Scoped to .legal_page so no existing page
+   changes. */
+.legal_page .arrow_list {
+  float: none;
+}
+
+/* Long unbroken URLs in the legal text (e.g. www.hhs.gov/ocr/privacy/hipaa/complaints)
+   were wider than a phone screen and forced a horizontal scroll. Scoped to the
+   legal pages so nothing else changes. */
+.legal_page a {
+  overflow-wrap: anywhere;
+}
+/* Cataract self-test quiz. Scoped to .selftest so no other page is affected.
+
+   Each question is its own fieldset/legend so screen readers announce the
+   question with the radio group. Result tiers are distinguished by their
+   heading text as well as colour -- colour alone would fail WCAG 1.4.1. */
+form.selftest {
+  margin-bottom: 48px;
+}
+
+.selftest fieldset {
+  border: 1px solid #dde6e6;
+  border-radius: 8px;
+  padding: 20px 22px;
+  margin: 0 0 16px;
+}
+
+.selftest legend {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #0c2240;
+  padding: 0 6px;
+}
+
+.selftest .selftest_options {
+  display: flex;
+  gap: 28px;
+  padding-top: 10px;
+}
+
+.selftest .selftest_options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.selftest input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #187878;
+  cursor: pointer;
+}
+
+.selftest_group_label {
+  font-weight: 600;
+  color: #187878;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 26px 0 10px;
+}
+
+.selftest_error {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-left: 4px solid #9e3126;
+  background: #fdecea;
+  color: #0d0d0d;
+}
+
+.selftest_result {
+  margin-top: 26px;
+  margin-bottom: 48px;
+  padding: 24px 26px;
+  border-radius: 8px;
+  color: #0d0d0d;
+}
+
+.selftest_result h2 {
+  margin-bottom: 12px;
+}
+
+.selftest_result.is_low      { background: #eef7ee; border: 1px solid #b6ddb6; }
+.selftest_result.is_moderate { background: #fff6e0; border: 1px solid #e6cf95; }
+.selftest_result.is_high     { background: #fdecea; border: 1px solid #eeb3ac; }
+
+/* Hero quick-cards: make the whole card clickable.
+
+   The anchor wraps only the icon image -- the heading and description sit
+   outside it -- so the click target was just the 46px icon box. A stretched
+   pseudo-element covers the card without changing the markup, so the link
+   keeps its aria-label and the tab order is unchanged. :has() gives the card
+   the keyboard focus ring; browsers without it still ring the icon. */
+.quick_cards .card_div {
+  position: relative;
+  cursor: pointer;
+}
+
+.quick_cards .card_div .icon_div a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.quick_cards .card_div:has(a:focus-visible) {
+  outline: 2px solid #4dd4d4;
+  outline-offset: 3px;
+}
+
+
+/* ---------- Floating quick-links panel (.side_widget) ----------
+   Markup lives in includes/footer.php. Fixed to the right edge on
+   desktop, docked along the bottom edge on phones. Everything is
+   scoped under .side_widget / .side_btn so no other page is touched.
+   z-index 98 keeps it under the mobile nav drawer (99), the menu close
+   button (999) and the skip link (9999). */
+.side_widget {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 98;
+}
+
+.side_widget ul {
+  /* The global "ul { width:100%; float:left }" rule would break this. */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  float: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  /* White tray: keeps the navy buttons visible when the panel is over the
+     navy footer or the hero, and gives them one clean edge. */
+  background: #ffffff;
+  padding: 2px 0 2px 2px;
+  border-radius: 8px 0 0 8px;
+}
+
+.side_widget li {
+  margin: 0;
+  padding: 0;
+}
+
+.side_btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 92px; /* APPOINTMENT is 81px at 12px; leaves 84px inside */
+  min-height: 78px; /* two 12px lines, so every button matches */
+  padding: 8px 4px;
+  background: #0c2240;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-radius: 6px 0 0 6px; /* site buttons use 6px */
+  transition: background 0.3s ease;
+}
+
+/* Icon sits in a tinted rounded tile, the same treatment as the hero
+   card icons (.quick_cards .icon_div: teal at 20% on navy, 10px radius). */
+.side_btn svg {
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  padding: 6px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background: rgba(26, 130, 130, 0.2);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.side_btn.side_btn_primary svg,
+.side_btn:hover svg,
+.side_btn:focus-visible svg {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.side_btn.side_btn_primary:hover svg,
+.side_btn.side_btn_primary:focus-visible svg {
+  background: rgba(26, 130, 130, 0.2);
+}
+
+/* Primary call to action (Request Appointment) uses the green, same as
+   .btnGreen; the other buttons use the blue, same as .btnBlue. Hover
+   swaps them, matching those two button styles. */
+.side_btn.side_btn_primary {
+  background: #1a8282;
+}
+
+.side_btn:hover,
+.side_btn:focus-visible {
+  background: #1a8282;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.side_btn.side_btn_primary:hover,
+.side_btn.side_btn_primary:focus-visible {
+  background: #0c2240;
+}
+
+/* Inset ring: the panel sits flush with the viewport edge, so an outer
+   ring would be clipped on the right. */
+.side_btn:focus-visible {
+  outline: 2px solid #4dd4d4;
+  outline-offset: -4px;
+}
+
+@media (max-width: 767px) {
+  .side_widget {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+
+  .side_widget ul {
+    flex-direction: row;
+    gap: 2px;
+    background: #ffffff;
+    padding: 2px 0 0;
+    border-radius: 0;
+  }
+
+  .side_widget li {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex; /* so every button stretches to the tallest one */
+  }
+
+  .side_btn {
+    width: auto;
+    flex: 1 1 auto;
+    min-height: 56px;
+    padding: 6px 2px;
+    font-size: 10px; /* a fifth of a 375px screen leaves ~69px for the label */
+    border-radius: 0;
+  }
+
+  .side_btn svg {
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+    margin-bottom: 3px;
+  }
+
+  /* Keep the bottom of the footer reachable above the docked bar. */
+  body {
+    padding-bottom: 55px;
+  }
+}
+
+@media (max-width: 360px) {
+  .side_btn {
+    padding: 6px 1px;
+    font-size: 9px;
+  }
+}
+
+@media print {
+  .side_widget {
+    display: none;
+  }
+}
+
+
+/* Phones get a 900px-wide copy of the homepage hero (about 1/5 the bytes of the
+   1920px original). The desktop image is set inline on the section, so this
+   needs !important to win. Same gradient as the inline style. */
+@media (max-width: 767px) {
+  .hero_section.bgCover {
+    background-image: linear-gradient(90deg, rgba(8, 18, 36, 0.82) 0%, rgba(8, 18, 36, 0.6) 50%, rgba(8, 18, 36, 0.2) 100%), url(assets/images/hero_image_mobile.webp) !important;
+  }
+}

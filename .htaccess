@@ -1,0 +1,12 @@
+# Serve index.php for directory requests
+DirectoryIndex index.php index.html
+
+RewriteEngine On
+
+# 301  /index.php  ->  /   (and  /subfolder/index.php  ->  /subfolder/)
+# Matched against THE_REQUEST -- the literal browser request line -- so that the
+# internal DirectoryIndex rewrite back to index.php does not re-trigger the rule
+# and cause a redirect loop. %1 captures the leading path, keeping this correct
+# when the site is installed in a subfolder.
+RewriteCond %{THE_REQUEST} \s(/+(?:.*/)?)index\.php[\s?] [NC]
+RewriteRule ^ %1 [R=301,L]
