@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /php-source/
+
+Sitemap: https://calvv.com/sitemap.xml
